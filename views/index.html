@@ -1,0 +1,6 @@
+<ul>
+    <li ng-repeat="participant in participants">
+        <img ng-src="/ecourse/images/{{participant.image}}" ng-if="participant.image" />
+        <a ng-href="#/participants/view/{{participant.participantId}}">{{participant.prename}} {{participant.name}} v/o {{participant.scoutname}}</a>
+    </li>
+</ul>

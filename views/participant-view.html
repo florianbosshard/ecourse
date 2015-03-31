@@ -2,4 +2,12 @@
 <h1>{{participant.scoutname}}</h1>
 <img ng-src="/ecourse/images/{{participant.image}}" ng-if="participant.image" />
 
-
+<div ng-repeat="category in participant.categories">
+    <h2>{{category.name}}</h2>
+    <ul>
+        <li ng-repeat="beobachtung in category.beobachtungen">
+            {{beobachtung.beobachtung}}
+        </li>
+        
+    </ul>
+</div>

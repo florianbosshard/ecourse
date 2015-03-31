@@ -1,6 +1,7 @@
-<ul>
+<ul class="gallery">
     <li ng-repeat="participant in participants">
-        <img ng-src="/ecourse/images/{{participant.image}}" ng-if="participant.image" />
-        <a ng-href="#/participants/view/{{participant.participantId}}">{{participant.prename}} {{participant.name}} v/o {{participant.scoutname}}</a>
+        <a ng-href="#/participants/view/{{participant.participantId}}">
+        <img ng-src="/ecourse/images/{{participant.image}}" ng-if="participant.image" alt="{{participant.prename}} {{participant.name}} v/o {{participant.scoutname}}" />
+        <span class="participantName"> {{participant.scoutname}} ({{participant.numBeobachtungen}})</span></a>
     </li>
 </ul>

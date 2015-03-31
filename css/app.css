@@ -7,9 +7,6 @@ and open the template in the editor.
     Created on : 21.03.2015, 01:12:38
     Author     : Florian
 */
-body h1 {
-  color: red;
-  font-size: 13px; }
 body .gallery li {
   width: 150px;
   border: 1px solid #ebebeb;
@@ -26,3 +23,10 @@ body .gallery li {
     text-align: center;
     display: block;
     color: black; }
+body .categoryTitle {
+  font-size: 18px; }
+body .participantImage {
+  float: right;
+  margin: 10px; }
+body:after {
+  clear: both; }

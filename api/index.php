@@ -65,8 +65,12 @@ function getCategories($participantId){
 
 function getBeobachtungenPerCategories($participantId, $categoryId){
     	$sql = "SELECT "
-                . " *  "
+                . " beobachtung.beobachtungId, beobachtung.datetime, beobachtung.beobachtung,   "
+                . " leader.prename, leader.name, leader.scoutname leaderScoutName, "
+                . " activity.activityNumber, activity.title activityTitle "
                 . " FROM beobachtung beobachtung"
+                . " JOIN leader leader ON leader.leaderId = beobachtung.leaderId "
+                . " LEFT OUTER JOIN activity activity ON activity.activityId = beobachtung.activityId "
                 . " WHERE categoryId = ". $categoryId
                 . " AND participantId = ". $participantId
                 . " ORDER BY datetime  ";

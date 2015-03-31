@@ -9,10 +9,7 @@ and open the template in the editor.
 */
 
 body{
-    h1{
-        color: red;
-        font-size: 13px;
-    }
+
     
     .gallery {
         li {
@@ -34,5 +31,15 @@ body{
             margin: 10px;
             list-style-type: none;
         }
+    }
+    .categoryTitle {
+        font-size: 18px;
+    }
+    .participantImage {
+        float: right;
+        margin: 10px;
+    }
+    &:after {
+        clear: both;
     }
 }

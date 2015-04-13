@@ -5,6 +5,7 @@ $app =  new \Slim\Slim();
 
 $app->get('/participants', "getParticipants");
 $app->get('/participant/view/:id', "getParticipant");
+$app->post('/participant/add/', "addBeobachtung");
 
 $app->run();
 
@@ -89,6 +90,23 @@ function getBeobachtungenPerCategories($participantId, $categoryId){
 
 }
 
+function addBeobachtung(){
+    $request = $app->request();
+    $sql = "INSERT INTO beobachtung (participantId, leaderId, categoryId, activityId, datetime, beobachtung) VALUES (:participantId, :leaderId, :categoryId, :activityId, :datetime, :beobachtung)";
+
+    try{
+        $s = $this->dbh->prepare($sql);
+        $s->bindParam("participantId",  $request->post('participantId'));
+        $s->bindParam("leaderId",  $request->post('leaderId'));
+        $s->bindParam("categoryId",  $request->post('categoryId'));
+        $s->bindParam("activityId",  $request->post('activityId'));
+        $s->bindParam("datetime",  $request->post('datetime'));
+        $s->bindParam("beobachtung",  $request->post('beobachtung'));
+        $s->execute();       
+    } catch (PDOException $ex) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+    }
+}
 
 function getParticipant($id) {
 	$sql = "SELECT "

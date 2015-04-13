@@ -6,6 +6,8 @@
 {{participant.prename}} {{participant.name}} <br />
 
 
+<a ng-href="#/beobachtung/add/{{participant.participantId}}">Neue Beobachtung erfassen</a>
+
 <div style="clear: both;"></div>
 <div ng-repeat="category in participant.categories">
     <h2 class="categoryTitle">{{category.name}}</h2>

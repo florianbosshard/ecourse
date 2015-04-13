@@ -35,3 +35,31 @@ app.controller('ParticipantController', function($http, $scope, $routeParams) {
                 $scope.participant = status;
             });       
 });
+
+app.controller('BeobachtungController', ['$http', '$scope', 'BeobachtungFactory', '$routeParams', function($http, $scope, BeobachtungFactory, $routeParams){
+    $scope.beobachtung = null;
+    var participantId = $routeParams.id;
+    
+     $http.get('api/index.php/categories/')
+        .success(
+            function(data, status, headers, config) {
+            
+                $scope.categories = data;
+            })
+        .error(
+            function(data, status, headers, config) {
+            
+                $scope.categories = status;
+            });
+    
+    $scope.addBeobachtung = function () {
+        console.log($scope);
+        console.log(BeobachtungFactory);
+        $scope.beobachtung.participantId = participantId; 
+        BeobachtungFactory.create($scope.beobachtung)
+        //UsersFactory.create($scope.user);
+        //$location.path('/user-list');
+    }
+    
+}]);
+

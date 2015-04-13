@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Neue Beobachtung erfassen</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+                <div class="control-group">
+            <label class="control-label" for="inputCategoryId">Datum / Zeit:</label>
+            <div class="controls">
+                <input type="datetime-local" ng-model="beobachtung.datetime"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputCategoryId">Kategorie:</label>
+            <div class="controls">
+                <select id="inputCategoryId" ng-model="beobachtung.categoryId">
+                    <option ng-repeat="category in categories" value="{{category.categoryId}}">{{category.name}}</option>         
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputBeobachtung">Beobachtung</label>
+            <div class="controls">
+                <textarea id="inputBeobachtung" ng-model="beobachtung.beobachtung" cols="100" rows="10"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <a ng-click="addBeobachtung()" class="btn btn-small btn-primary">Beobachtung hinzufügen</a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -5,7 +5,9 @@ $app =  new \Slim\Slim();
 
 $app->get('/participants', "getParticipants");
 $app->get('/participant/view/:id', "getParticipant");
-$app->post('/participant/add/', "addBeobachtung");
+$app->get('/categories/', "getCategories");
+$app->post('/beobachtung/', "addBeobachtung");
+$app->delete('/beobachtung/:id', "deleteBeobachtung");
 
 $app->run();
 
@@ -38,8 +40,28 @@ function getParticipants(){
             echo '{"error":{"text":'. $e->getMessage() .'}}'; 
     }
 }
+function getCategories(){
+       	$sql = "SELECT "
+                . " *  "
+                . " FROM category category"
+                . " ORDER BY categoryId ";
+        
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);  
+		$stmt->execute();
+		$categories = $stmt->fetchAll(PDO::FETCH_OBJ);
+                
+		$db = null;
+                
+		echo json_encode($categories);
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
 
-function getCategories($participantId){
+
+}
+function getCategoriesForParticipant($participantId){
     	$sql = "SELECT "
                 . " *  "
                 . " FROM category category"
@@ -63,7 +85,6 @@ function getCategories($participantId){
 	}
 
 }
-
 function getBeobachtungenPerCategories($participantId, $categoryId){
     	$sql = "SELECT "
                 . " beobachtung.beobachtungId, beobachtung.datetime, beobachtung.beobachtung,   "
@@ -89,28 +110,49 @@ function getBeobachtungenPerCategories($participantId, $categoryId){
 	}
 
 }
-
 function addBeobachtung(){
+    global $app;
+    
     $request = $app->request();
+    $beobachtung = json_decode($request->getBody());
+    
+    $leaderId = 1;
+    
     $sql = "INSERT INTO beobachtung (participantId, leaderId, categoryId, activityId, datetime, beobachtung) VALUES (:participantId, :leaderId, :categoryId, :activityId, :datetime, :beobachtung)";
 
+   
     try{
-        $s = $this->dbh->prepare($sql);
-        $s->bindParam("participantId",  $request->post('participantId'));
-        $s->bindParam("leaderId",  $request->post('leaderId'));
-        $s->bindParam("categoryId",  $request->post('categoryId'));
-        $s->bindParam("activityId",  $request->post('activityId'));
-        $s->bindParam("datetime",  $request->post('datetime'));
-        $s->bindParam("beobachtung",  $request->post('beobachtung'));
+        $db = getConnection();
+        $s = $db->prepare($sql);
+        $s->bindParam("participantId",  $beobachtung->participantId);     
+        $s->bindParam("leaderId",  $leaderId);
+        $s->bindParam("categoryId",  $beobachtung->categoryId);
+        $s->bindParam("activityId",  $beobachtung->activityId);
+        $s->bindParam("datetime",  $beobachtung->datetime);
+        $s->bindParam("beobachtung",  $beobachtung->beobachtung);
         $s->execute();       
     } catch (PDOException $ex) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+        echo '{"error":{"text":'. $ex->getMessage() .'}}'; 
     }
 }
 
+function deleteBeobachtung($id){
+    global $app;
+    try{  
+        $sql = "DELETE FROM beobachtung WHERE beobachtungId = :id ";
+        $db = getConnection();
+        $s = $db->prepare($sql);
+        $s->bindParam("id", intval($id));
+        $s->execute();
+    } catch (PDOException $ex) {
+        echo '{"error":{"text":'. $ex->getMessage() .'}}'; 
+    }
+}
+
+
 function getParticipant($id) {
 	$sql = "SELECT "
-                . " participant.prename, participant.name, participant.scoutname, participant.image  "
+                . " participant.participantId, participant.prename, participant.name, participant.scoutname, participant.image  "
                 . " FROM participant participant"
                 . " WHERE participant.participantId=:id";
         
@@ -122,7 +164,7 @@ function getParticipant($id) {
 		$user = $stmt->fetch(PDO::FETCH_OBJ);
                 
                 
-                $user->categories = getCategories($id);
+                $user->categories = getCategoriesForParticipant($id);
                 
 		$db = null;
 		echo json_encode($user);

@@ -20,10 +20,11 @@ app.controller('IndexController', function($http, $scope) {
 });
 
 // Controller for root page
-app.controller('ParticipantController', function($http, $scope, $routeParams) {
+app.controller('ParticipantController', function($http, $scope, $routeParams, BeobachtungFactory, $location) {
     var participantId = $routeParams.id;
     // For some reason $resource won't work here, so went for $http.get()
-    $http.get('api/index.php/participant/view/'+ participantId)
+    var getData = function(){
+        $http.get('api/index.php/participant/view/'+ participantId)
         .success(
             function(data, status, headers, config) {
             
@@ -33,10 +34,19 @@ app.controller('ParticipantController', function($http, $scope, $routeParams) {
             function(data, status, headers, config) {
             
                 $scope.participant = status;
-            });       
+            });     
+    };
+          
+    $scope.deleteBeobachtung = function (beobachtungId){
+        
+        BeobachtungFactory.delete({"id": beobachtungId});
+        getData();
+    }
+    
+    getData();
 });
 
-app.controller('BeobachtungController', ['$http', '$scope', 'BeobachtungFactory', '$routeParams', function($http, $scope, BeobachtungFactory, $routeParams){
+app.controller('BeobachtungController', ['$http', '$scope', 'BeobachtungFactory', '$routeParams', '$location', function($http, $scope, BeobachtungFactory, $routeParams, $location){
     $scope.beobachtung = null;
     var participantId = $routeParams.id;
     
@@ -53,12 +63,9 @@ app.controller('BeobachtungController', ['$http', '$scope', 'BeobachtungFactory'
             });
     
     $scope.addBeobachtung = function () {
-        console.log($scope);
-        console.log(BeobachtungFactory);
         $scope.beobachtung.participantId = participantId; 
         BeobachtungFactory.create($scope.beobachtung)
-        //UsersFactory.create($scope.user);
-        //$location.path('/user-list');
+        $location.path('/participants/view/'+ participantId);
     }
     
 }]);

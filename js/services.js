@@ -2,8 +2,9 @@ var services = angular.module('ecourse.services', ['ngResource']);
 
 
 services.factory('BeobachtungFactory', function($resource){
-   return $resource('api/index.php/beobachtung/add/', {}, {
-       create: {method: 'POST' }
+   return $resource('api/index.php/beobachtung/:id', {}, {
+       create: {method: 'POST' },
+       delete: {method: 'DELETE' }
    }) 
 });
 

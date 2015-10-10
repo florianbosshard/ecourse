@@ -5,5 +5,6 @@ app.config(function($routeProvider, $locationProvider){
             .when('/', { templateUrl: 'views/index.html', controller: 'IndexController'})
             .when('/participants/view/:id', {templateUrl: 'views/participant-view.html', controller: "ParticipantController"})
             .when('/beobachtung/add/:id', {templateUrl: 'views/beobachtung-new.html', controller: "BeobachtungController"})
+            .when('/activities/', {templateUrl: 'views/activities.html', controller: "ActivitiesController"})
 });
 

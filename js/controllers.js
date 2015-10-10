@@ -137,3 +137,17 @@ app.controller('BeobachtungController', ['$http', '$scope', 'BeobachtungFactory'
     
 }]);
 
+app.controller('ActivitiesController', function($http, $scope) {
+    // For some reason $resource won't work here, so went for $http.get()
+    $http.get('api/index.php/activities')
+        .success(
+            function(data, status, headers, config) {
+            
+                $scope.activities = data;
+            })
+        .error(
+            function(data, status, headers, config) {
+            
+                $scope.activities = status;
+            });       
+});

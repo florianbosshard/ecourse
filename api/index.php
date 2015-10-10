@@ -8,6 +8,7 @@ $app->get('/participants', "getParticipants");
 $app->get('/participant/view/:id', "getParticipant");
 $app->get('/categories/', "getCategories");
 $app->get('/days/', "getDays");
+$app->get('/activities', "getActivities");
 $app->get('/activityPerDate/:dateShort', "getActivitiesPerDate");
 $app->post('/beobachtung/', "addBeobachtung");
 $app->delete('/beobachtung/:id', "deleteBeobachtung");
@@ -81,6 +82,26 @@ function getDays(){
                 foreach ($days as $key => $value) {
                     $value->displayDate = strftime("%a, %e. %B", strtotime($value->dateShort));
                 }
+                
+		$db = null;
+                
+		echo json_encode($days);
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
+
+function getActivities(){
+        setlocale(LC_ALL, "de_CH");
+        $sql = "SELECT * "
+                . " FROM activity activity"
+                . " ORDER BY datetime ";
+        
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);  
+		$stmt->execute();
+		$days = $stmt->fetchAll(PDO::FETCH_OBJ);
                 
 		$db = null;
                 

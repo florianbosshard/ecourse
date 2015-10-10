@@ -12,6 +12,10 @@ $app->get('/activities', "getActivities");
 $app->get('/activityPerDate/:dateShort', "getActivitiesPerDate");
 $app->post('/beobachtung/', "addBeobachtung");
 $app->delete('/beobachtung/:id', "deleteBeobachtung");
+$app->post('/activity/', "addActivity");
+$app->delete('/activity/:id', "deleteActivity");
+
+
 
 $app->run();
 
@@ -227,6 +231,47 @@ function deleteBeobachtung($id){
         echo '{"error":{"text":'. $ex->getMessage() .'}}'; 
     }
 }
+
+
+function addActivity(){
+    global $app;
+    
+    $request = $app->request();
+    $activity = json_decode($request->getBody());
+    
+    
+    $sql = "INSERT INTO activity (datetime, activityNumber, title) VALUES (:datetime, :activityNumber, :title)";
+
+   
+    try{
+        $db = getConnection();
+        $s = $db->prepare($sql);
+        $s->bindParam("activityNumber",  $activity->activityNumber);
+        $s->bindParam("title",  $activity->title);      
+        $s->bindParam("datetime",  $activity->datetime);
+        $s->execute();       
+    } catch (PDOException $ex) {
+        echo '{"error":{"text":'. $ex->getMessage() .'}}'; 
+    }
+}
+
+function deleteActivity($id){
+    global $app;
+    //try{  
+        $sql = "DELETE FROM activity WHERE activityId = :id ";
+        echo $sql;
+        echo $id;
+        
+        //die();
+        $db = getConnection();
+        $s = $db->prepare($sql);
+        $s->bindParam("id", intval($id));
+        $s->execute();
+   /* } catch (PDOException $ex) {
+        echo '{"error":{"text":'. $ex->getMessage() .'}}'; 
+    }*/
+}
+
 
 
 function getParticipant($id) {

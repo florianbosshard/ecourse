@@ -8,6 +8,13 @@ services.factory('BeobachtungFactory', function($resource){
    }) 
 });
 
+services.factory('ActivityFactory', function($resource){
+   return $resource('api/index.php/activity/:id', {}, {
+       create: {method: 'POST' },
+       delete: {method: 'DELETE' }
+   }) 
+});
+
 /*services.factory('UsersFactory', function ($resource) {
     return $resource('/ngdemo/web/users', {}, {
         query: { method: 'GET', isArray: true },

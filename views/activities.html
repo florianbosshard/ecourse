@@ -1,9 +1,44 @@
 <h1>Aktivitäten</h1>
-<table class="activityTable">
-    
+<table class="table table-striped">
+        <thead>
+      <tr>
+        <th>Nummer</th>
+        <th>Titel</th>
+        <th>Datum / Zeit</th>
+        <th>Löschen</th>
+      </tr>
+    </thead>
     <tr ng-repeat="activity in activities">
         <td>{{activity.activityNumber}} </td>
         <td>{{activity.title}} </td>      
-        <td>{{activity.datetime}} </td>       
+        <td>{{activity.datetime}} </td>      
+        <td><a ng-click="deleteActivity(activity.activityId)">Löschen</a>
     </tr>
 </table>
+
+<h2>Aktivität hinzufügen</h2>
+<form novalidate="novalidate" class="form-horizontal" ng-submit="addActivity()">
+        <div class="control-group">
+            <label class="control-label" for="inputtime">Datum / Zeit</label>
+            <div class="controls">
+                <input id="inputDateTime"  type="text" size="20" ng-model="activity.datetime"/>
+            </div>
+        </div>
+         <div class="control-group">
+            <label class="control-label" for="inputtime">Aktivitätsnummer</label>
+            <div class="controls">
+                <input id="inputActivityNumber"  type="text" size="5" ng-model="activity.activityNumber"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputtime">Titel</label>
+            <div class="controls">
+                <input id="inputActivityNumber"  type="text" size="50" ng-model="activity.title"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-primary">Aktivität hinzufügen</button>
+            </div>
+        </div>
+    </form>

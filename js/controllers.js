@@ -137,17 +137,37 @@ app.controller('BeobachtungController', ['$http', '$scope', 'BeobachtungFactory'
     
 }]);
 
-app.controller('ActivitiesController', function($http, $scope) {
+app.controller('ActivitiesController', ['$http', '$scope', 'ActivityFactory', function($http, $scope, ActivityFactory) {
     // For some reason $resource won't work here, so went for $http.get()
-    $http.get('api/index.php/activities')
-        .success(
-            function(data, status, headers, config) {
-            
-                $scope.activities = data;
-            })
-        .error(
-            function(data, status, headers, config) {
-            
-                $scope.activities = status;
-            });       
-});
+    var getData = function(){
+        $http.get('api/index.php/activities')
+            .success(
+                function(data, status, headers, config) {
+                    
+                    $scope.activities = data;
+                    $scope.activity = {};
+                })
+            .error(
+                function(data, status, headers, config) { 
+                    $scope.activities = status;
+                });
+        }
+        
+     $scope.addActivity = function () {
+        if(!$scope.activity){
+            alert('Wie wäre es, wenn du noch etwas in die Felder eingeben würdest? ;-)')
+        } 
+        else{
+            ActivityFactory.create($scope.activity);
+            getData();
+        }
+    }
+        
+        $scope.deleteActivity = function (activityId){
+            ActivityFactory.delete({"id": activityId});
+            getData();
+        }
+        
+        getData();
+    
+}]);

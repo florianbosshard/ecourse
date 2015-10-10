@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'vendor/autoload.php';
 
 $app =  new \Slim\Slim();
@@ -6,6 +7,8 @@ $app =  new \Slim\Slim();
 $app->get('/participants', "getParticipants");
 $app->get('/participant/view/:id', "getParticipant");
 $app->get('/categories/', "getCategories");
+$app->get('/days/', "getDays");
+$app->get('/activityPerDate/:dateShort', "getActivitiesPerDate");
 $app->post('/beobachtung/', "addBeobachtung");
 $app->delete('/beobachtung/:id', "deleteBeobachtung");
 
@@ -61,6 +64,53 @@ function getCategories(){
 
 
 }
+
+function getDays(){
+        setlocale(LC_ALL, "de_CH");
+        $sql = "SELECT DISTINCT "
+                . " DATE(datetime) as dateShort "
+                . " FROM activity activity"
+                . " ORDER BY datetime ";
+        
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);  
+		$stmt->execute();
+		$days = $stmt->fetchAll(PDO::FETCH_OBJ);
+                
+                foreach ($days as $key => $value) {
+                    $value->displayDate = strftime("%a, %e. %B", strtotime($value->dateShort));
+                }
+                
+		$db = null;
+                
+		echo json_encode($days);
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
+
+function getActivitiesPerDate($date){
+        setlocale(LC_ALL, "de_CH");
+        $sql = "SELECT * "
+                . " FROM activity activity"
+                . " WHERE DATE(datetime) = '". $date ."'"
+                . " ORDER BY datetime ";
+        
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);  
+		$stmt->execute();
+		$days = $stmt->fetchAll(PDO::FETCH_OBJ);
+                
+		$db = null;
+                
+		echo json_encode($days);
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
+
 function getCategoriesForParticipant($participantId){
     	$sql = "SELECT "
                 . " *  "
@@ -95,7 +145,10 @@ function getBeobachtungenPerCategories($participantId, $categoryId){
                 . " LEFT OUTER JOIN activity activity ON activity.activityId = beobachtung.activityId "
                 . " WHERE categoryId = ". $categoryId
                 . " AND participantId = ". $participantId
-                . " ORDER BY datetime  ";
+                . " ORDER BY CASE 
+                     WHEN activity.datetime is null THEN beobachtung.datetime 
+                     WHEN activity.datetime is not null THEN activity.datetime 
+                    END ASC  ";
         
 	try {
 		$db = getConnection();
@@ -116,7 +169,7 @@ function addBeobachtung(){
     $request = $app->request();
     $beobachtung = json_decode($request->getBody());
     
-    $leaderId = 1;
+    $leaderId = intval($_SESSION["leaderID"]);
     
     $sql = "INSERT INTO beobachtung (participantId, leaderId, categoryId, activityId, datetime, beobachtung) VALUES (:participantId, :leaderId, :categoryId, :activityId, :datetime, :beobachtung)";
 
@@ -128,7 +181,12 @@ function addBeobachtung(){
         $s->bindParam("leaderId",  $leaderId);
         $s->bindParam("categoryId",  $beobachtung->categoryId);
         $s->bindParam("activityId",  $beobachtung->activityId);
-        $s->bindParam("datetime",  $beobachtung->datetime);
+        $datetime = '';
+        if(isset($beobachtung->time)){
+            $datetime = $beobachtung->date ." ". $beobachtung->time .":00";         
+        }
+        
+        $s->bindParam("datetime",  $datetime);
         $s->bindParam("beobachtung",  $beobachtung->beobachtung);
         $s->execute();       
     } catch (PDOException $ex) {

@@ -158,6 +158,7 @@ app.controller('ActivitiesController', ['$http', '$scope', 'ActivityFactory', fu
             alert('Wie wäre es, wenn du noch etwas in die Felder eingeben würdest? ;-)')
         } 
         else{
+            console.log($scope.activity);
             ActivityFactory.create($scope.activity);
             getData();
         }

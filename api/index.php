@@ -97,7 +97,8 @@ function getDays(){
 
 function getActivities(){
         setlocale(LC_ALL, "de_CH");
-        $sql = "SELECT * "
+        $sql = "SELECT * , "
+                . "(SELECT COUNT(*) FROM beobachtung WHERE beobachtung.activityId = activity.activityId) AS AnzBeobachtungen "
                 . " FROM activity activity"
                 . " ORDER BY datetime ";
         
@@ -248,7 +249,9 @@ function addActivity(){
         $s = $db->prepare($sql);
         $s->bindParam("activityNumber",  $activity->activityNumber);
         $s->bindParam("title",  $activity->title);      
-        $s->bindParam("datetime",  $activity->datetime);
+        $datetime = $activity->datetimeYYYY ."-". $activity->datetimeMon ."-". $activity->datetimeDD ." ". $activity->datetimeHH .":". $activity->datetimeMin .":00";
+        echo $datetime;
+        $s->bindParam("datetime", $datetime);
         $s->execute();       
     } catch (PDOException $ex) {
         echo '{"error":{"text":'. $ex->getMessage() .'}}'; 
@@ -257,19 +260,16 @@ function addActivity(){
 
 function deleteActivity($id){
     global $app;
-    //try{  
+    try{  
         $sql = "DELETE FROM activity WHERE activityId = :id ";
-        echo $sql;
-        echo $id;
         
-        //die();
         $db = getConnection();
         $s = $db->prepare($sql);
         $s->bindParam("id", intval($id));
         $s->execute();
-   /* } catch (PDOException $ex) {
+    } catch (PDOException $ex) {
         echo '{"error":{"text":'. $ex->getMessage() .'}}'; 
-    }*/
+    }
 }
 
 

@@ -1,11 +1,31 @@
 <div class="container">
     <h1>Neue Beobachtung erfassen</h1>
 
-    <form novalidate="novalidate" class="form-horizontal">
-                <div class="control-group">
-            <label class="control-label" for="inputCategoryId">Datum / Zeit:</label>
+   
+    <form novalidate="novalidate" class="form-horizontal" ng-submit="addBeobachtung()">
+        <div class="control-group">
+            <label class="control-label" for="inputCategoryId">Datum:</label>
             <div class="controls">
-                <input type="datetime-local" ng-model="beobachtung.datetime"/>
+                <select id="inputDate" ng-model="beobachtung.date">
+                    <option ng-repeat="day in days" value="{{day.dateShort}}">{{day.displayDate}}</option>         
+                </select>
+            </div>
+        </div>
+        
+                <div class="control-group">
+            <label class="control-label" for="inputCategoryId">Aktivität:</label>
+            <div class="controls">
+                <select id="inputActivity" ng-disabled="!dayActivities" ng-model="beobachtung.activityId">
+                    <option ng-repeat="dayActivity in dayActivities  track by $index" value="{{dayActivity.activityId}}">{{dayActivity.activityNumber}} {{dayActivity.title}}</option> 
+                    <option value="0"> </option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="inputtime">Zeit:</label>
+            <div class="controls">
+                <input id="inputTime" ng-disabled="timeDisabled" type="text" size="5" ng-model="beobachtung.time"/> Format: "15:00"
             </div>
         </div>
         <div class="control-group">
@@ -24,8 +44,8 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <a ng-click="addBeobachtung()" class="btn btn-small btn-primary">Beobachtung hinzufügen</a>
+                <button type="submit" class="btn btn-primary">Beobachtung hinzufügen</button>
             </div>
         </div>
     </form>
-</div>
+</div>  

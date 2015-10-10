@@ -9,10 +9,10 @@ and open the template in the editor.
 */
 body .gallery li {
   width: 150px;
-  height: 170px;
   overflow: hidden;
   border: 1px solid #ebebeb;
   float: left;
+  padding: 10px;
   margin: 10px;
   list-style-type: none; }
   body .gallery li img {

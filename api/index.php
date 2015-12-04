@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'vendor/autoload.php';
+include('dbConnection.php');
 
 $app =  new \Slim\Slim();
 
@@ -20,22 +21,9 @@ $app->delete('/activity/:id', "deleteActivity");
 $app->run();
 
 
-function getConnection(){
-    $servername = "localhost";
-    $username = "kurs";
-    $password = "CDPJDWQq6pKfrqD7";
 
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=kurs;charset=utf8", $username, $password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $conn;
-    }catch(PDOException $e)
-    {
-        echo "Connection failed: " . $e->getMessage();
-    }
-    
-}
+
+
 function getParticipants(){
     $sql = "SELECT participant.participantId, participant.prename, participant.scoutname, participant.name, participant.image, COUNT(beobachtung.beobachtungId) numBeobachtungen FROM participant LEFT OUTER JOIN beobachtung ON beobachtung.participantId = participant.participantId GROUP BY participant.participantId ORDER BY participant.scoutname, participant.prename";
     try {

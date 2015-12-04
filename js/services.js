@@ -15,6 +15,13 @@ services.factory('ActivityFactory', function($resource){
    }) 
 });
 
+services.factory('ParticipantFactory', function($resource){
+   return $resource('api/index.php/participant/:id', {}, {
+       create: {method: 'POST' },
+       delete: {method: 'DELETE' }
+   }) 
+});
+
 /*services.factory('UsersFactory', function ($resource) {
     return $resource('/ngdemo/web/users', {}, {
         query: { method: 'GET', isArray: true },

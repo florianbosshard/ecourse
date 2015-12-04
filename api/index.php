@@ -37,7 +37,7 @@ function getConnection(){
     
 }
 function getParticipants(){
-    $sql = "SELECT participant.participantId, participant.prename, participant.scoutname, participant.image, COUNT(beobachtung.beobachtungId) numBeobachtungen FROM participant LEFT OUTER JOIN beobachtung ON beobachtung.participantId = participant.participantId GROUP BY participant.participantId ORDER BY participant.scoutname, participant.prename";
+    $sql = "SELECT participant.participantId, participant.prename, participant.scoutname, participant.name, participant.image, COUNT(beobachtung.beobachtungId) numBeobachtungen FROM participant LEFT OUTER JOIN beobachtung ON beobachtung.participantId = participant.participantId GROUP BY participant.participantId ORDER BY participant.scoutname, participant.prename";
     try {
             $db = getConnection();
             $stmt = $db->query($sql);  

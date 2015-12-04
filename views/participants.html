@@ -13,7 +13,7 @@
     <tr ng-repeat="participant in participants">
         <td><img src="images/{{participant.image}}" ng-if="participant.image" width="100px"/> </td>
         <td>{{participant.scoutname}} </td>
-        <td>{{participant.prename}} </td>              
+        <td>{{participant.prename}} </td>
         <td>{{participant.name}} </td>    
         <td><a ng-click="editParticipant(activity.activityId)">Bearbeiten</a></td>
         <td><a ng-if="participant.numBeobachtungen == 0" ng-click="deleteParticipant(activity.activityId)">Löschen</a></td>

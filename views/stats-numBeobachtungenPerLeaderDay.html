@@ -1,0 +1,22 @@
+
+
+
+<h1>Anzahl Beobachtungen pro Tag und Leiter</h1>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Leiter</th>
+        <th>Tag</th>
+        <th>Anzahl Beobachtungen</th>
+      </tr>
+    </thead>
+    <tr ng-repeat="numBeobachtungPerLeaderDay in numBeobachtungenPerLeaderDay">
+        <td>{{numBeobachtungPerLeaderDay.scoutname}} </td>
+        <td>{{numBeobachtungPerLeaderDay.datum}} </td>
+        <td>{{numBeobachtungPerLeaderDay.number}} </td>
+    </tr>
+</table>
+
+<div id="chartdiv" style="height:400px;width:800px; "></div>
+<script language="JavaScript">
+</script>

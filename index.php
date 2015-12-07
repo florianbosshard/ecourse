@@ -13,6 +13,13 @@ if(!isset($_SESSION["leaderID"]))
   <title>ECourse</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+  <script language="javascript" type="text/javascript" src="bower_components/jqplot-bower/dist/jquery.min.js"></script>
+
+  <script language="javascript" type="text/javascript" src="bower_components/jqplot-bower/dist/jquery.jqplot.min.js"></script>
+
+<script type="text/javascript" src="bower_components/jqplot-bower/dist/plugins/jqplot.dateAxisRenderer.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="bower_components/jqplot-bower/dist/jquery.jqplot.css" />
+
 
   <link rel="stylesheet" href="css/app.css">
   </head>

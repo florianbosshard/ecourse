@@ -15,9 +15,8 @@ $app->post('/beobachtung/', "addBeobachtung");
 $app->delete('/beobachtung/:id', "deleteBeobachtung");
 $app->post('/activity/', "addActivity");
 $app->delete('/activity/:id', "deleteActivity");
-
-
-
+$app->get('/statsNumBeobachtungenPerLeaderDay', "getStatNumberOfBeobachtungenPerDayAndLeader");
+$app->get('/statsBeobachtungenCredatLeader', "getStatBeobachtungenCredatLeader");
 $app->run();
 
 
@@ -214,7 +213,7 @@ function addBeobachtung(){
 
     $leaderId = intval($_SESSION["leaderID"]);
 
-    $sql = "INSERT INTO beobachtung (participantId, leaderId, categoryId, activityId, datetime, beobachtung) VALUES (:participantId, :leaderId, :categoryId, :activityId, :datetime, :beobachtung)";
+    $sql = "INSERT INTO beobachtung (participantId, leaderId, categoryId, activityId, datetime, beobachtung, CreDat) VALUES (:participantId, :leaderId, :categoryId, :activityId, :datetime, :beobachtung, NOW())";
 
 
     try{
@@ -305,11 +304,71 @@ function getParticipant($id) {
 		$user = $stmt->fetch(PDO::FETCH_OBJ);
 
 
-                $user->categories = getCategoriesForParticipant($id);
+    $user->categories = getCategoriesForParticipant($id);
 
 		$db = null;
 		echo json_encode($user);
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
+}
+
+function getStatNumberOfBeobachtungenPerDayAndLeader(){
+    $sql = "SELECT leader.scoutname, DATE(CreDat) datum, COUNT(*) number FROM `beobachtung`
+      JOIN leader ON leader.leaderId = beobachtung.leaderId
+      GROUP BY leader.scoutname, DATE(beobachtung.CreDat)
+      ORDER BY leader.scoutname, Datum";
+
+      try {
+    		$db = getConnection();
+    		$stmt = $db->prepare($sql);
+    		$stmt->execute();
+    		$numBeobachtungenPerLeaderDay = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+
+
+    		$db = null;
+    		echo json_encode($numBeobachtungenPerLeaderDay);
+    	} catch(PDOException $e) {
+    		echo '{"error":{"text":'. $e->getMessage() .'}}';
+    	}
+
+
+
+
+}
+
+function getStatBeobachtungenCredatLeader(){
+    $sql = "SELECT leader.scoutname, CreDat FROM `beobachtung`
+      JOIN leader ON leader.leaderId = beobachtung.leaderId
+      ORDER BY leader.scoutname, CreDat";
+
+      try {
+    		$db = getConnection();
+    		$stmt = $db->prepare($sql);
+    		$stmt->execute();
+    		$beobachtungenCredatLeader = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+
+        $i = 0;
+        $nameBefore = '';
+        foreach ($beobachtungenCredatLeader as $beobachtungCredatLeader) {
+            if($nameBefore != $beobachtungCredatLeader->scoutname){
+                $i = 0;
+                $nameBefore = $beobachtungCredatLeader->scoutname;
+            }
+            $i++;
+            $dates[$nameBefore][] = array($beobachtungCredatLeader->CreDat, $i);
+
+        }
+
+    		$db = null;
+    		echo json_encode($dates);
+    	} catch(PDOException $e) {
+    		echo '{"error":{"text":'. $e->getMessage() .'}}';
+    	}
+
+
+
+
 }

@@ -7,6 +7,7 @@ app.config(function($routeProvider, $locationProvider){
             .when('/beobachtung/add/:id', {templateUrl: 'views/beobachtung-new.html', controller: "BeobachtungController"})
             .when('/activities/', {templateUrl: 'views/activities.html', controller: "ActivitiesController"})
             .when('/participants/', {templateUrl: 'views/participants.html', controller: "ParticipantsController"})
-    
-});
+            .when('/stats/numBeobachtungenPerLeaderDay', {templateUrl: 'views/stats-numBeobachtungenPerLeaderDay.html', controller: "NumBeobachtungenPerLeaderDayController"})
 
+
+});

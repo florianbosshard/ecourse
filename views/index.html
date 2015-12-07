@@ -5,11 +5,9 @@
         <img ng-src="/ecourse/images/{{participant.image}}" ng-if="participant.image" alt="{{participant.prename}} {{participant.name}} v/o {{participant.scoutname}}" />
         <div class="participantName"> {{participant.scoutname}} <br /> (
             <span ng-repeat="category in participant.categories">
-                <i class="fa {{category.cssClass}}" title="{{category.name}}"/> {{category.numberOfBeobachtung}}
+                <i class="fa {{category.cssClass}}"/> {{category.numberOfBeobachtung}}
             </span>
           )
-
-
         </div></a>
     </li>
 </ul>

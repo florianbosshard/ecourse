@@ -229,13 +229,20 @@ app.controller('NumBeobachtungenPerLeaderDayController', ['$http', '$scope', fun
 
                   var arr = []
                   var finalArr = [];
+                  var seriesArr = [];
                   var first = true;
 
                   var indexBefore = '';
                   for(var index in data){
+                    if(first){
+                      indexBefore = index;
+                    }
                     if(index != indexBefore && !first){
                         finalArr = finalArr.concat([arr]);
+                        seriesArr = seriesArr.concat({label: indexBefore});
+                        console.log(indexBefore)
                         indexBefore = index;
+
                         arr = [];
                     }
 
@@ -246,27 +253,28 @@ app.controller('NumBeobachtungenPerLeaderDayController', ['$http', '$scope', fun
 
 
                   finalArr = finalArr.concat([arr]);
-                  indexBefore = index;
-                  arr = [];
+                  seriesArr = seriesArr.concat({label: index});
 
-                  console.log(finalArr);
-                  //console.log(data);
+
                   var plot2 = $.jqplot('chartdiv', finalArr, {
                       title:'Anzahl Beobachtungen pro Tag',
                       axes:{
                         xaxis:{
                           renderer:$.jqplot.DateAxisRenderer,
                           tickOptions:{formatString:'%b %#d, %#I %p'},
-                          //min:'June 16, 2008 8:00AM',
                           tickInterval:'1 day'
                         }
                       },
-                      series:[{lineWidth:4, markerOptions:{style:'none'}}]
+                      series: seriesArr,
+                      legend:{
+                        show: true,
+                        placement: 'outsideGrid',
+                      },
                   });
                 })
             .error(
                 function(data, status, headers, config) {
-                    $scope.numBeobachtungenPerLeaderDay = status;
+                    alert('error');
                 });
     }
 

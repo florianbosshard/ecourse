@@ -3,7 +3,21 @@
 <img ng-src="/ecourse/images/{{participant.image}}" ng-if="participant.image" class="participantImage" />
 
 <h1>{{participant.scoutname}}</h1>
-{{participant.prename}} {{participant.name}} <br />
+
+<dl>
+  <dt>Name </dt><dd>{{participant.prename}} {{participant.name}}  v/o {{participant.scoutname}}</dd>
+  <dt>Geburtsdatum </dt><dd>{{participant.birthDate}} </dd>
+  <dt>Pfadiabteilung </dt><dd>{{participant.scoutGroup}} ({{participant.canton}})</dd>
+  <dt>Erfahrung </dt><dd>{{participant.experience}}</dd>
+  <dt>Aktuelle Funktion </dt><dd>{{participant.actualFunction}}</dd>
+  <dt>Zukunftspläne in der Pfadi </dt><dd>{{participant.futurePlans}}</dd>
+
+  <dt>Motivation und Erwartungen für den Kurs </dt><dd>{{participant.motivation}}</dd>
+  <dt>Informationen der empfehlenden Istanz </dt><dd>{{participant.recommendation}}</dd>
+
+</dl>
+<div ng-bind-html="participant.comment"></div>
+<br />
 
 
 <a ng-href="#/beobachtung/add/{{participant.participantId}}">Neue Beobachtung erfassen</a>

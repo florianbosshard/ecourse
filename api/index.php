@@ -292,7 +292,7 @@ function deleteActivity($id){
 
 function getParticipant($id) {
 	$sql = "SELECT "
-                . " participant.participantId, participant.prename, participant.name, participant.scoutname, participant.image  "
+                . " participant.participantId, participant.prename, participant.name, participant.scoutname, participant.image,  participant.sex, participant.birthDate, participant.scoutGroup, participant.canton, participant.experience, participant.actualFunction, participant.futurePlans, participant.motivation, participant.recommendation"
                 . " FROM participant participant"
                 . " WHERE participant.participantId=:id";
 
@@ -302,6 +302,7 @@ function getParticipant($id) {
 		$stmt->bindParam("id", $id);
 		$stmt->execute();
 		$user = $stmt->fetch(PDO::FETCH_OBJ);
+
 
 
     $user->categories = getCategoriesForParticipant($id);
@@ -348,7 +349,7 @@ function getStatBeobachtungenCredatLeader(){
     		$stmt = $db->prepare($sql);
     		$stmt->execute();
     		$beobachtungenCredatLeader = $stmt->fetchAll(PDO::FETCH_OBJ);
-
+        $dates = array();
 
         $i = 0;
         $nameBefore = '';

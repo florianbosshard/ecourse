@@ -44,6 +44,7 @@ if(!isset($_SESSION["leaderID"]))
         <li><a href="#/">TNFG</a></li>
         <li><a href="#/activities/">Aktivitäten</a></li>
         <li><a href="#/participants/">Teilnehmende</a></li>
+        <li><a href="#/stats/numBeobachtungenPerLeaderDay/">Statistik</a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">

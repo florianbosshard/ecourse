@@ -42,7 +42,8 @@ if(!isset($_SESSION["leaderID"]))
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#/">TNFG</a></li>
-        <li><a href="#/activities/">Aktivitäten</a></li>
+        <li><a href="#/tabularView">Anzahl Beobachtungen</a></li>
+        <li><a href="#/activities/">Aktivit&auml;ten</a></li>
         <li><a href="#/participants/">Teilnehmende</a></li>
         <li><a href="#/stats/numBeobachtungenPerLeaderDay/">Statistik</a></li>
 

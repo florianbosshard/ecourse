@@ -114,11 +114,11 @@ app.controller('BeobachtungController', ['$http', '$scope', 'BeobachtungFactory'
 
     $scope.addBeobachtung = function () {
         if(!$scope.beobachtung){
-            alert('Wie wäre es, wenn du noch etwas in die Felder eingeben würdest? ;-)')
+            alert('Wie w&auml;re es, wenn du noch etwas in die Felder eingeben w&uuml;rdest? ;-)')
         } else if((!$scope.beobachtung.activityId || $scope.beobachtung.activityId == 0) && !$scope.beobachtung.time){
-            alert('Entweder muss eine Aktivität ausgewählt oder eine Zeit eingegeben werden.')
+            alert('Entweder muss eine Aktivit&auml;t ausgew&auml;hlt oder eine Zeit eingegeben werden.')
         } else if($scope.beobachtung.activityId > 0 && $scope.beobachtung.time){
-            alert('Es soll entweder eine Aktivität oder ein Zeitpunkt ausgewählt werden.')
+            alert('Es soll entweder eine Aktivit&auml;t oder ein Zeitpunkt ausgew&auml;hlt werden.')
         } else if($scope.beobachtung.time && !formatTime($scope.beobachtung.time)){
             alert('Die Zeit muss in der Form HH:MM eingegeben werden!');
         }else if(!$scope.beobachtung.categoryId){
@@ -155,7 +155,7 @@ app.controller('ActivitiesController', ['$http', '$scope', 'ActivityFactory', fu
 
      $scope.addActivity = function () {
         if(!$scope.activity){
-            alert('Wie wäre es, wenn du noch etwas in die Felder eingeben würdest? ;-)')
+            alert('Wie w&auml;re es, wenn du noch etwas in die Felder eingeben w&uuml;rdest? ;-)')
         }
         else{
             console.log($scope.activity);

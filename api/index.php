@@ -43,9 +43,31 @@ function getNumberOfBeobachtungenPerCategoryForParticipant($participantId){
 
 }
 
+function getPostitsForParticipant($participantId){
+  $sql = "SELECT "
+            . " postit.title, postit.text, postitType.faIcon"
+            . " FROM postit"
+            ." JOIN postitType ON postit.PostitTypeId = postitType.postitTypeId "
+            ." WHERE postit.participantId = ". intval($participantId) ;
+    try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam('participantId', $participantId);
+        $stmt->execute();
+        $numOfBeobachtungenPerCategory = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        $db = null;
+        return $numOfBeobachtungenPerCategory;
+} catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+}
+}
+
 
 function getParticipants(){
-    $sql = "SELECT participant.participantId, participant.prename, participant.scoutname, participant.name, participant.image, COUNT(beobachtung.beobachtungId) numBeobachtungen FROM participant LEFT OUTER JOIN beobachtung ON beobachtung.participantId = participant.participantId GROUP BY participant.participantId ORDER BY participant.scoutname, participant.prename";
+    $sql = "SELECT participant.participantId, participant.prename, participant.scoutname, participant.name, participant.image, COUNT(beobachtung.beobachtungId) numBeobachtungen FROM participant
+    LEFT OUTER JOIN beobachtung ON beobachtung.participantId = participant.participantId
+    GROUP BY participant.participantId ORDER BY participant.scoutname, participant.prename";
     try {
             $db = getConnection();
             $stmt = $db->query($sql);
@@ -53,6 +75,7 @@ function getParticipants(){
 
             foreach($users as $user){
                 $user->categories = getNumberOfBeobachtungenPerCategoryForParticipant($user->participantId);
+                $user->postits = getPostitsForParticipant($user->participantId);
             }
 
 

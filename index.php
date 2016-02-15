@@ -68,7 +68,15 @@ if(!isset($_SESSION["leaderID"]))
   <script src="bower_components/angular-translate/angular-translate.min.js"></script>
   <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
 
-  <script src="js/controllers.js"></script>
+  <script src="js/controllers/controllers.js"></script>
+  <script src="js/controllers/controller.index.js"></script>
+  <script src="js/controllers/controller.notices.js"></script>
+  <script src="js/controllers/controller.participant.js"></script>
+  <script src="js/controllers/controller.participants.js"></script>
+  <script src="js/controllers/controller.statistics.js"></script>
+  <script src="js/controllers/controller.activities.js"></script>
+  
+  
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>
 </body>

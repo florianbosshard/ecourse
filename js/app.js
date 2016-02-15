@@ -19,3 +19,4 @@ app.config(function($routeProvider, $locationProvider, $translateProvider){
 
 
 });
+

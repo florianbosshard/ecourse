@@ -3,7 +3,8 @@ app.controller('IndexController', function($http, $scope) {
     $http.get('api/index.php/participants')
         .success(
             function(data, status, headers, config) {
-
+                $scope.categories = data[0].categories;
+                console.log($scope.categories);
                 $scope.participants = data;
             })
         .error(

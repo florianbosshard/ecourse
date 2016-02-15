@@ -3,11 +3,10 @@
 <tr>
   <th>Foto</th>
   <th>Pfadiname</th>
-  <th>Anz. Persönlichkeit</th>
-  <th>Anz. Sozialkompetenz</th>
-  <th>Anz. Fachkompetenz</th>
-  <th>Anz. Rest</th>
-  <th>Anz Total </th>
+        <th ng-repeat="category in categories">
+          {{category.name}}
+      </th>
+  <th>Total </th>
 </tr>
 <tr ng-repeat="participant in participants | orderBy:'-numBeobachtungen'">
   <td>

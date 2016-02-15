@@ -5,6 +5,15 @@
     "PARTICIPANTS": "Teilnehmende",
     "STATISTICS": "Statistik",
     "LOGOUT": "Abmelden",
+    "BACK": "Zurück",
+    "PARTICIPANT_BIRTHDAY": "Geburtstag",
+    "PARTICIPANT_GROUP": "Abteilung",
+    "PARTICIPANT_EXPERIENCE": "Erfahrung",
+    "PARTICIPANT_FUNCTION": "Aktuelle Funktion",
+    "PARTICIPANT_SCOUTFUTUREPLANS": "Zukunftspläne in der Pfadi",
+    "PARTICIPANT_MOTIVATIONANDEXPECTINGSFORCOURSE": "Motivation und Erwartungen an den Kurs",
+    "PARTICIPANT_INFOFROMRECOMMENDINGINSTANCE": "Informationen der empfehlenden Instanz",
+    "PARTICIPANT_ADD_NOTICE": "Beobachtung hinzufügen",
     
     "ACTIVITY_NUMBER": "Aktivitätsnummer",
     "ACTIVITY_TITLE": "Titel",
@@ -17,5 +26,7 @@
     "PARTICIPANT_PRENAME": "Vorname",
     "PARTICIPANT_NAME": "Name",
     "PARTICIPANT_EDIT": "Bearbeiten",
-    "PARTICIPANT_DELETE": "Löschen"
+    "PARTICIPANT_DELETE": "Löschen",
+    
+    "NUM_TOTAL": "Total"
 }

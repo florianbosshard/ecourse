@@ -1,26 +1,26 @@
 
-<a ng-href="#/">Zur&uuml;ck</a>
+<a ng-href="#/">{{'BACK' | translate}} </a>
 <img ng-src="/ecourse/images/{{participant.image}}" ng-if="participant.image" class="participantImage" />
 
 <h1>{{participant.scoutname}}</h1>
 
 <dl>
-  <dt>Name </dt><dd>{{participant.prename}} {{participant.name}}  v/o {{participant.scoutname}}</dd>
-  <dt>Geburtsdatum </dt><dd>{{participant.birthDate}} </dd>
-  <dt>Pfadiabteilung </dt><dd>{{participant.scoutGroup}} ({{participant.canton}})</dd>
-  <dt>Erfahrung </dt><dd>{{participant.experience}}</dd>
-  <dt>Aktuelle Funktion </dt><dd>{{participant.actualFunction}}</dd>
-  <dt>Zukunftspl&auml;ne in der Pfadi </dt><dd>{{participant.futurePlans}}</dd>
+  <dt>{{'PARTICIPANT_NAME' |translate}} </dt><dd>{{participant.prename}} {{participant.name}}  v/o {{participant.scoutname}}</dd>
+  <dt>{{'PARTICIPANT_BIRTHDAY' |translate}} </dt><dd>{{participant.birthDate}} </dd>
+  <dt>{{'PARTICIPANT_GROUP' |translate}} </dt><dd>{{participant.scoutGroup}} ({{participant.canton}})</dd>
+  <dt>{{'PARTICIPANT_EXPERIENCE' |translate}}</dt><dd>{{participant.experience}}</dd>
+  <dt>{{'PARTICIPANT_FUNCTION' |translate}}</dt><dd>{{participant.actualFunction}}</dd>
+  <dt>{{'PARTICIPANT_SCOUTFUTUREPLANS' |translate}} </dt><dd>{{participant.futurePlans}}</dd>
 
-  <dt>Motivation und Erwartungen f&uuml;r den Kurs </dt><dd>{{participant.motivation}}</dd>
-  <dt>Informationen der empfehlenden Istanz </dt><dd>{{participant.recommendation}}</dd>
+  <dt>{{'PARTICIPANT_MOTIVATIONANDEXPECTINGSFORCOURSE' |translate}}</dt><dd>{{participant.motivation}}</dd>
+  <dt>{{'PARTICIPANT_INFOFROMRECOMMENDINGINSTANCE' |translate}} </dt><dd>{{participant.recommendation}}</dd>
 
 </dl>
 <div ng-bind-html="participant.comment"></div>
 <br />
 
 
-<a ng-href="#/beobachtung/add/{{participant.participantId}}">Neue Beobachtung erfassen</a>
+<a ng-href="#/beobachtung/add/{{participant.participantId}}">{{'PARTICIPANT_ADD_NOTICE' |translate}}</a>
 
 <div style="clear: both;"></div>
 <div ng-repeat="category in participant.categories">

@@ -1,12 +1,12 @@
 <h1>TN sortiert nach Anzahl der Beobachtungen</h1>
 <table class="table table-striped">
 <tr>
-  <th>Foto</th>
+  <th>{{'PARTICIPANT_IMAGE' | translate}}</th>
   <th>Pfadiname</th>
         <th ng-repeat="category in categories">
           {{category.name}}
       </th>
-  <th>Total </th>
+  <th>{{'NUM_TOTAL' | translate}} </th>
 </tr>
 <tr ng-repeat="participant in participants | orderBy:'-numBeobachtungen'">
   <td>

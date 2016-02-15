@@ -17,8 +17,9 @@ if(!isset($_SESSION["leaderID"]))
 
   <script language="javascript" type="text/javascript" src="bower_components/jqplot-bower/dist/jquery.jqplot.min.js"></script>
 
-<script type="text/javascript" src="bower_components/jqplot-bower/dist/plugins/jqplot.dateAxisRenderer.min.js"></script>
+  <script type="text/javascript" src="bower_components/jqplot-bower/dist/plugins/jqplot.dateAxisRenderer.min.js"></script>
   <link rel="stylesheet" type="text/css" href="bower_components/jqplot-bower/dist/jquery.jqplot.css" />
+  
 
 
   <link rel="stylesheet" href="css/app.css">
@@ -41,15 +42,15 @@ if(!isset($_SESSION["leaderID"]))
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#/">TNFG</a></li>
-        <li><a href="#/tabularView">Anzahl Beobachtungen</a></li>
-        <li><a href="#/activities/">Aktivit&auml;ten</a></li>
-        <li><a href="#/participants/">Teilnehmende</a></li>
-        <li><a href="#/stats/numBeobachtungenPerLeaderDay/">Statistik</a></li>
+        <li><a href="#/">{{'OVERVIEW' | translate}}</a></li>
+        <li><a href="#/tabularView">{{'NUM_NOTICE' | translate}}</a></li>
+        <li><a href="#/activities/">{{'ACTIVITIES' | translate}}</a></li>
+        <li><a href="#/participants/">{{'PARTICIPANTS' | translate}}</a></li>
+        <li><a href="#/stats/numBeobachtungenPerLeaderDay/">{{'STATISTICS' | translate}}</a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="logout.php">Logout</a></li>
+        <li><a href="logout.php">{{'LOGOUT' | translate}}</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -64,6 +65,8 @@ if(!isset($_SESSION["leaderID"]))
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+  <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
 
   <script src="js/controllers.js"></script>
   <script src="js/app.js"></script>

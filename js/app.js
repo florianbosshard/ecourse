@@ -1,6 +1,6 @@
-var app = angular.module('ecourse', ['ng', 'ngResource', 'ngRoute', 'ecourse.controllers', 'ecourse.services']);
+var app = angular.module('ecourse', ['ng', 'ngResource', 'ngRoute', 'ecourse.controllers', 'ecourse.services', 'pascalprecht.translate']);
 
-app.config(function($routeProvider, $locationProvider){
+app.config(function($routeProvider, $locationProvider, $translateProvider){
     $routeProvider
             .when('/', { templateUrl: 'views/index.html', controller: 'IndexController'})
             .when('/tabularView', {templateUrl: 'views/tabularView.html', controller: 'IndexController'})
@@ -9,6 +9,13 @@ app.config(function($routeProvider, $locationProvider){
             .when('/activities/', {templateUrl: 'views/activities.html', controller: "ActivitiesController"})
             .when('/participants/', {templateUrl: 'views/participants.html', controller: "ParticipantsController"})
             .when('/stats/numBeobachtungenPerLeaderDay', {templateUrl: 'views/stats-numBeobachtungenPerLeaderDay.html', controller: "NumBeobachtungenPerLeaderDayController"})
+
+
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'locales/locale-',
+        suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('de');
 
 
 });

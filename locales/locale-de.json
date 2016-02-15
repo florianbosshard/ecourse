@@ -4,5 +4,18 @@
     "ACTIVITIES": "Aktivitäten",
     "PARTICIPANTS": "Teilnehmende",
     "STATISTICS": "Statistik",
-    "LOGOUT": "Abmelden"
+    "LOGOUT": "Abmelden",
+    
+    "ACTIVITY_NUMBER": "Aktivitätsnummer",
+    "ACTIVITY_TITLE": "Titel",
+    "ACTIVITY_DATETIME": "Datum/ Zeit",
+    "ACTIVITY_DELETE": "Aktivität löschen",
+    "ACTIVITY_ADD": "Aktivität hinzufügen",
+    
+    "PARTICIPANT_IMAGE": "Foto",
+    "PARTICIPANT_SCOUTNAME": "Pfadiname",
+    "PARTICIPANT_PRENAME": "Vorname",
+    "PARTICIPANT_NAME": "Name",
+    "PARTICIPANT_EDIT": "Bearbeiten",
+    "PARTICIPANT_DELETE": "Löschen"
 }

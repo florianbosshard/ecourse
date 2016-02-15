@@ -1,44 +1,44 @@
-<h1>Aktivit&auml;ten</h1>
+<h1>{{'ACTIVITIES' | translate}}</h1>
 <table class="table table-striped">
         <thead>
       <tr>
-        <th>Nummer</th>
-        <th>Titel</th>
-        <th>Datum / Zeit</th>
-        <th>Löschen</th>
+        <th>{{'ACTIVITY_NUMBER' | translate}}</th>
+        <th>{{'ACTIVITY_TITLE' | translate}}</th>
+        <th>{{'ACTIVITY_DATETIME' | translate}}</th>
+        <th>{{'ACTIVITY_DELETE' | translate}}</th>
       </tr>
     </thead>
     <tr ng-repeat="activity in activities">
         <td>{{activity.activityNumber}} </td>
         <td>{{activity.title}} </td>      
         <td>{{activity.datetime}} </td>      
-        <td><a ng-if="activity.AnzBeobachtungen == 0" ng-click="deleteActivity(activity.activityId)">Löschen</a>
+        <td><a ng-if="activity.AnzBeobachtungen == 0" ng-click="deleteActivity(activity.activityId)">{{'ACTIVITY_DELETE' | translate}}</a>
     </tr>
 </table>
 
-<h2>Aktivit&auml;t hinzuf&uuml;gen</h2>
+<h2>{{'ACTIVITY_ADD' | translate}}</h2>
 <form novalidate="novalidate" class="form-horizontal" ng-submit="addActivity()">
         <div class="control-group">
-            <label class="control-label" for="inputtime">Datum / Zeit</label>
+            <label class="control-label" for="inputtime">{{'ACTIVITY_DATETIME' | translate}}</label>
             <div class="controls">
                 <input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeDD"/>.<input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeMon"/>.<input id="inputDateTime"  type="text" size="4" ng-model="activity.datetimeYYYY"/> <input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeHH"/>:<input id="inputDateTime"  type="text" size="2" ng-model="activity.datetimeMin"/>
             </div>
         </div>
          <div class="control-group">
-            <label class="control-label" for="inputtime">Aktivit&auml;tsnummer</label>
+            <label class="control-label" for="inputtime">{{'ACTIVITY_NUMBER' | translate}}</label>
             <div class="controls">
                 <input id="inputActivityNumber"  type="text" size="5" ng-model="activity.activityNumber"/>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="inputtime">Titel</label>
+            <label class="control-label" for="inputtime">{{'ACTIVITY_TITLE' | translate}}</label>
             <div class="controls">
                 <input id="inputActivityNumber"  type="text" size="50" ng-model="activity.title"/>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
-                <button type="submit" class="btn btn-primary">Aktivit&auml;t hinzuf&uuml;gen</button>
+                <button type="submit" class="btn btn-primary">{{'ACTIVITY_ADD' | translate}}</button>
             </div>
         </div>
     </form>

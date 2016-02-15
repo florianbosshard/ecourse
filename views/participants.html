@@ -1,13 +1,13 @@
-<h1>Teilnehmende</h1>
+<h1>{{'PARTICIPANTS' |translate}}</h1>
 <table class="table table-striped">
     <thead>
       <tr>
-        <th>Bild</th>
-        <th>Pfadiname</th>
-        <th>Vorname</th>
-        <th>Name</th>
-        <th>Bearbeiten</th>
-        <th>Löschen</th>
+        <th>{{'PARTICIPANT_IMAGE' |translate}}</th>
+        <th>{{'PARTICIPANT_SCOUTNAME' |translate}}</th>
+        <th>{{'PARTICIPANT_PRENAME' |translate}}</th>
+        <th>{{'PARTICIPANT_NAME' |translate}}</th>
+        <th>{{'PARTICIPANT_EDIT' |translate}}</th>
+        <th>{{'PARTICIPANT_DELETE' |translate}}</th>
       </tr>
     </thead>
     <tr ng-repeat="participant in participants">
@@ -15,7 +15,7 @@
         <td>{{participant.scoutname}} </td>
         <td>{{participant.prename}} </td>
         <td>{{participant.name}} </td>    
-        <td><a ng-click="editParticipant(activity.activityId)">Bearbeiten</a></td>
-        <td><a ng-if="participant.numBeobachtungen == 0" ng-click="deleteParticipant(activity.activityId)">Löschen</a></td>
+        <td><a ng-click="editParticipant(activity.activityId)">{{'PARTICIPANT_EDIT' |translate}}</a></td>
+        <td><a ng-if="participant.numBeobachtungen == 0" ng-click="deleteParticipant(activity.activityId)">{{'PARTICIPANT_DELETE' |translate}}</a></td>
     </tr>
 </table>

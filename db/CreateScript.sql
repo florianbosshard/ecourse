@@ -98,10 +98,10 @@ CREATE TABLE IF NOT EXISTS `participant` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `postIt`
+-- Tabellenstruktur für Tabelle `postit`
 --
 
-CREATE TABLE IF NOT EXISTS `postIt` (
+CREATE TABLE IF NOT EXISTS `postit` (
 `postit` smallint(6) NOT NULL,
   `Title` varchar(300) COLLATE utf8_bin NOT NULL,
   `Text` text COLLATE utf8_bin NOT NULL,

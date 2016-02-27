@@ -1,0 +1,41 @@
+{
+    "PAGETITLE": "Participant Feedbacks",
+    
+    "OVERVIEW": "Overview",
+    "NUM_NOTICE": "Number of notices", 
+    "ACTIVITIES": "Activities",
+    "PARTICIPANTS": "Participants",
+    "STATISTICS": "Statistics",
+    "LOGOUT": "Logout",
+    "BACK": "Back",
+    "PARTICIPANT_BIRTHDAY": "Birthday",
+    "PARTICIPANT_GROUP": "Group",
+    "PARTICIPANT_EXPERIENCE": "Experience",
+    "PARTICIPANT_FUNCTION": "Actual function",
+    "PARTICIPANT_SCOUTFUTUREPLANS": "Future plans in scout",
+    "PARTICIPANT_MOTIVATIONANDEXPECTINGSFORCOURSE": "Motivation and experiense in scout",
+    "PARTICIPANT_INFOFROMRECOMMENDINGINSTANCE": "Information from recommending instance",
+    "PARTICIPANT_ADD_NOTICE": "Add notice",
+    
+    "ACTIVITY_NUMBER": "Activity number",
+    "ACTIVITY_TITLE": "Title",
+    "ACTIVITY_DATETIME": "Date / time",
+    "ACTIVITY_DELETE": "Delete Activity",
+    "ACTIVITY_ADD": "Add Activity",
+    
+    "PARTICIPANT_IMAGE": "Image",
+    "PARTICIPANT_SCOUTNAME": "Scoutname",
+    "PARTICIPANT_PRENAME": "Prename",
+    "PARTICIPANT_NAME": "Name",
+    "PARTICIPANT_EDIT": "Edit Participant",
+    "PARTICIPANT_DELETE": "Delete Participant",
+    
+    "NOTICE_DATE": "Date",
+    "NOTICE_ACTIVITY": "Activity",
+    "NOTICE_TIME": "Time",
+    "NOTICE_CATEGORY": "Category",
+    "NOTICE_NOTICE": "Notice",
+    "NOTICE_ADD": "Add notice",
+    
+    "NUM_TOTAL": "Total"
+}

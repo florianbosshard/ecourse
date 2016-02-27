@@ -1,4 +1,6 @@
 {
+    "PAGETITLE": "TNFG: Beobachtungen",
+    
     "OVERVIEW": "Übersicht",
     "NUM_NOTICE": "Anzahl Beobachtungen", 
     "ACTIVITIES": "Aktivitäten",
@@ -27,6 +29,13 @@
     "PARTICIPANT_NAME": "Name",
     "PARTICIPANT_EDIT": "Bearbeiten",
     "PARTICIPANT_DELETE": "Löschen",
+    
+    "NOTICE_DATE": "Datum",
+    "NOTICE_ACTIVITY": "Aktivität",
+    "NOTICE_TIME": "Zeit",
+    "NOTICE_CATEGORY": "Kategorie",
+    "NOTICE_NOTICE": "Beobachtung",
+    "NOTICE_ADD": "Beobachtung hinzufügen",
     
     "NUM_TOTAL": "Total"
 }

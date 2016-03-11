@@ -158,7 +158,7 @@ ALTER TABLE `participant`
 --
 -- Indizes für die Tabelle `postIt`
 --
-ALTER TABLE `postIt`
+ALTER TABLE `postit`
  ADD PRIMARY KEY (`postit`);
 
 --
@@ -199,7 +199,7 @@ MODIFY `participantId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT für Tabelle `postIt`
 --
-ALTER TABLE `postIt`
+ALTER TABLE `postit`
 MODIFY `postit` smallint(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `postitType`

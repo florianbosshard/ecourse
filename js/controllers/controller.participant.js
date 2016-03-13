@@ -22,6 +22,9 @@ app.controller('ParticipantController', function($http, $scope, $routeParams, Be
         BeobachtungFactory.delete({"id": beobachtungId});
         getData();
     }
+    
+    
+    
 
     getData();
 });

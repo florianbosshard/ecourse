@@ -33,7 +33,7 @@
             <span ng-if="!beobachtung.activityNumber"> {{beobachtung.datetime }}</span>
 
             , {{beobachtung.leaderScoutName}})
-            <a ng-click="deleteBeobachtung(beobachtung.beobachtungId)">Löschen</a>
+            <a ng-href="#/beobachtung/modify/{{beobachtung.beobachtungId}}">Bearbeiten</a>
 
         </li>
 

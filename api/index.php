@@ -12,6 +12,7 @@ $app->get('/days/', "getDays");
 $app->get('/activities', "getActivities");
 $app->get('/activityPerDate/:dateShort', "getActivitiesPerDate");
 $app->post('/beobachtung/', "addBeobachtung");
+$app->put('/beobachtung/', "updateBeobachtung");
 $app->delete('/beobachtung/:id', "deleteBeobachtung");
 $app->post('/activity/', "addActivity");
 $app->delete('/activity/:id', "deleteActivity");
@@ -253,6 +254,35 @@ function addBeobachtung(){
 
         $s->bindParam("datetime",  $datetime);
         $s->bindParam("beobachtung",  $beobachtung->beobachtung);
+        $s->execute();
+    } catch (PDOException $ex) {
+        echo '{"error":{"text":'. $ex->getMessage() .'}}';
+    }
+}
+
+function updateBeobachtung(){
+    global $app;
+
+    $request = $app->request();
+    $beobachtung = json_decode($request->getBody());
+
+    $leaderId = intval($_SESSION["leaderID"]);
+
+    $sql = "UPDATE beobachtung SET categoryId = :categotyId , activityId = :activityId, datetime = :datetime, beobachtung = :beobachtung WHERE beobachtungId = :beobachtungId";
+
+    try{
+        $db = getConnection();
+        $s = $db->prepare($sql);
+        $s->bindParam("categoryId",  $beobachtung->categoryId);
+        $s->bindParam("activityId",  $beobachtung->activityId);
+        $datetime = '';
+        if(isset($beobachtung->time)){
+            $datetime = $beobachtung->date ." ". $beobachtung->time .":00";
+        }
+
+        $s->bindParam("datetime",  $datetime);
+        $s->bindParam("beobachtung",  $beobachtung->beobachtung);
+        $s->bindParam("beobachtungId", $beobachtung->beobachtungId);
         $s->execute();
     } catch (PDOException $ex) {
         echo '{"error":{"text":'. $ex->getMessage() .'}}';

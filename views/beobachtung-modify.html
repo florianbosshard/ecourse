@@ -1,0 +1,54 @@
+<div class="container">
+    <h1>{{"NOTICE_MODIFY" |translate}}</h1>
+
+   
+    <form novalidate="novalidate" class="form-horizontal" ng-submit="modifyBeobachtung()">
+        <div class="control-group">
+            <label class="control-label" for="inputCategoryId">{{'NOTICE_DATE'| translate}}</label>
+            <div class="controls">
+                <select id="inputDate" ng-model="beobachtung.date">
+                    <option value =""></option>
+                    <option ng-repeat="day in days" value="{{day.dateShort}}">{{day.dateShort}}</option>         
+                </select>
+                
+                {{beobachtung.date}}
+            </div>
+        </div>
+        
+                <div class="control-group">
+            <label class="control-label" for="inputCategoryId">{{'NOTICE_ACTIVITY'| translate}}</label>
+            <div class="controls">
+                <select id="inputActivity" ng-disabled="!dayActivities" ng-model="beobachtung.activityId">
+                    <option ng-repeat="dayActivity in dayActivities  track by $index" value="{{dayActivity.activityId}}">{{dayActivity.activityNumber}} {{dayActivity.title}}</option> 
+                    <option value="0"> </option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="inputtime">{{'NOTICE_TIME'| translate}}</label>
+            <div class="controls">
+                <input id="inputTime" ng-disabled="timeDisabled" type="text" size="5" ng-model="beobachtung.time"/> Format: "15:00"
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputCategoryId">{{'NOTICE_CATEGORY'| translate}}</label>
+            <div class="controls">
+                <select id="inputCategoryId" ng-model="beobachtung.categoryId">
+                    <option ng-repeat="category in categories" value="{{category.categoryId}}">{{category.name}}</option>         
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputBeobachtung">{{'NOTICE_NOTICE'| translate}}</label>
+            <div class="controls">
+                <textarea id="inputBeobachtung" ng-model="beobachtung.beobachtung" cols="100" rows="10"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-primary">{{'NOTICE_MODIFY'| translate}}</button>
+            </div>
+        </div>
+    </form>
+</div>  

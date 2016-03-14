@@ -37,5 +37,9 @@
     "NOTICE_NOTICE": "Beobachtung",
     "NOTICE_ADD": "Beobachtung hinzufügen",
     
-    "NUM_TOTAL": "Total"
+    "NUM_TOTAL": "Total",
+    
+    "NOTICE_MODIFY": "Beobachtung bearbeiten",
+    "NOTICE_NOT_SAVE": "Änderungen verwerfen",
+    "NOTICE_DELETE": "Beobachtung löschen"
 }

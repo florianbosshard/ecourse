@@ -130,8 +130,13 @@ app.controller('BeobachtungController', ['$http', '$scope', 'BeobachtungFactory'
     $scope.addBeobachtung = function () {
         if(validateBeobachtung($scope)===true){
             $scope.beobachtung.participantId = participantId;
-            BeobachtungFactory.create($scope.beobachtung)
-            $location.path('/participants/view/'+ participantId);
+            BeobachtungFactory.create($scope.beobachtung, function(){
+                    console.log('successfully added beobachtung');
+                    $location.path('/participants/view/'+ participantId);
+
+            }, function(error){
+                alert('An error occured: '+ error +'. Please save your text to a text-file and try again after a re-login.');
+            });
         }
     }
 

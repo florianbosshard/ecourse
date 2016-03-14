@@ -152,5 +152,15 @@ app.controller('BeobachtungModifyController', ['$http', '$scope', 'BeobachtungFa
             $location.path('/participants/view/'+ $scope.beobachtung.participantId);
         }
     }
+    
+    $scope.deleteBeobachtung = function (){
+
+        BeobachtungFactory.delete({"id": beobachtungId});
+        $location.path('/participants/view/'+ $scope.beobachtung.participantId);
+    }
+    
+    $scope.backToParticipant = function(){
+         $location.path('/participants/view/'+ $scope.beobachtung.participantId);       
+    }
 
 }]);

@@ -8,7 +8,7 @@
             <div class="controls">
                 <select id="inputDate" ng-model="beobachtung.date">
                     <option value =""></option>
-                    <option ng-repeat="day in days" value="{{day.dateShort}}">{{day.dateShort}}</option>         
+                    <option ng-repeat="day in days" value="{{day.dateShort}}">{{day.displayDate}}</option>         
                 </select>
                 
                 {{beobachtung.date}}
@@ -47,7 +47,10 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <button type="submit" class="btn btn-primary">{{'NOTICE_MODIFY'| translate}}</button>
+                <button type="submit" class="btn btn-warning">{{'NOTICE_MODIFY'| translate}}</button>
+                <button class="btn btn-danger" ng-click="deleteBeobachtung()">{{'NOTICE_DELETE' | translate}}</button>
+                <button class="btn btn-primary" ng-click="backToParticipant()">{{'NOTICE_NOT_SAVE' | translate}}</button>
+                
             </div>
         </div>
     </form>

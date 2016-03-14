@@ -6,22 +6,18 @@
         <div class="control-group">
             <label class="control-label" for="inputCategoryId">{{'NOTICE_DATE'| translate}}</label>
             <div class="controls">
-                <select id="inputDate" ng-model="beobachtung.date">
+                <select id="inputDate" ng-model="beobachtung.date" ng-options="d.dateShort as (d.displayDate) for d in days">
                     <option value =""></option>
-                    <option ng-repeat="day in days" value="{{day.dateShort}}">{{day.displayDate}}</option>         
-                </select>
-                
-                {{beobachtung.date}}
+                 </select>
             </div>
         </div>
         
-                <div class="control-group">
+        <div class="control-group">
             <label class="control-label" for="inputCategoryId">{{'NOTICE_ACTIVITY'| translate}}</label>
             <div class="controls">
-                <select id="inputActivity" ng-disabled="!dayActivities" ng-model="beobachtung.activityId">
-                    <option ng-repeat="dayActivity in dayActivities  track by $index" value="{{dayActivity.activityId}}">{{dayActivity.activityNumber}} {{dayActivity.title}}</option> 
+                <select id="inputActivity" ng-disabled="!dayActivities" ng-model="beobachtung.activityId" ng-options="i.activityId as (i.activityNumber + '-' + i.title) for i in dayActivities">>
                     <option value="0"> </option>
-                </select>
+                </select>        
             </div>
         </div>
         
@@ -34,8 +30,7 @@
         <div class="control-group">
             <label class="control-label" for="inputCategoryId">{{'NOTICE_CATEGORY'| translate}}</label>
             <div class="controls">
-                <select id="inputCategoryId" ng-model="beobachtung.categoryId">
-                    <option ng-repeat="category in categories" value="{{category.categoryId}}">{{category.name}}</option>         
+                <select id="inputCategoryId" ng-model="beobachtung.categoryId" ng-options="c.categoryId as (c.name) for c in categories">
                 </select>
             </div>
         </div>

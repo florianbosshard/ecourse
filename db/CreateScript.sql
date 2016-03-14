@@ -98,10 +98,10 @@ CREATE TABLE IF NOT EXISTS `participant` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `postIt`
+-- Tabellenstruktur für Tabelle `postit`
 --
 
-CREATE TABLE IF NOT EXISTS `postIt` (
+CREATE TABLE IF NOT EXISTS `postit` (
 `postit` smallint(6) NOT NULL,
   `Title` varchar(300) COLLATE utf8_bin NOT NULL,
   `Text` text COLLATE utf8_bin NOT NULL,
@@ -158,7 +158,7 @@ ALTER TABLE `participant`
 --
 -- Indizes für die Tabelle `postIt`
 --
-ALTER TABLE `postIt`
+ALTER TABLE `postit`
  ADD PRIMARY KEY (`postit`);
 
 --
@@ -199,7 +199,7 @@ MODIFY `participantId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT für Tabelle `postIt`
 --
-ALTER TABLE `postIt`
+ALTER TABLE `postit`
 MODIFY `postit` smallint(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `postitType`

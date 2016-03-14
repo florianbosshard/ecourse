@@ -6,6 +6,7 @@ app.config(function($routeProvider, $locationProvider, $translateProvider){
             .when('/tabularView', {templateUrl: 'views/tabularView.html', controller: 'IndexController'})
             .when('/participants/view/:id', {templateUrl: 'views/participant-view.html', controller: "ParticipantController"})
             .when('/beobachtung/add/:id', {templateUrl: 'views/beobachtung-new.html', controller: "BeobachtungController"})
+            .when('/beobachtung/modify/:id', {templateUrl: 'views/beobachtung-modify.html', controller: "BeobachtungModifyController"})
             .when('/activities/', {templateUrl: 'views/activities.html', controller: "ActivitiesController"})
             .when('/participants/', {templateUrl: 'views/participants.html', controller: "ParticipantsController"})
             .when('/stats/numBeobachtungenPerLeaderDay', {templateUrl: 'views/stats-numBeobachtungenPerLeaderDay.html', controller: "NumBeobachtungenPerLeaderDayController"})

@@ -11,7 +11,9 @@ $app->get('/categories/', "getCategories");
 $app->get('/days/', "getDays");
 $app->get('/activities', "getActivities");
 $app->get('/activityPerDate/:dateShort', "getActivitiesPerDate");
+$app->get('/beobachtung/:id', "getBeobachtung");
 $app->post('/beobachtung/', "addBeobachtung");
+$app->put('/beobachtung/', "updateBeobachtung");
 $app->delete('/beobachtung/:id', "deleteBeobachtung");
 $app->post('/activity/', "addActivity");
 $app->delete('/activity/:id', "deleteActivity");
@@ -208,8 +210,8 @@ function getBeobachtungenPerCategories($participantId, $categoryId){
                 . " FROM beobachtung beobachtung"
                 . " JOIN leader leader ON leader.leaderId = beobachtung.leaderId "
                 . " LEFT OUTER JOIN activity activity ON activity.activityId = beobachtung.activityId "
-                . " WHERE categoryId = ". $categoryId
-                . " AND participantId = ". $participantId
+                . " WHERE categoryId = ". intval($categoryId)
+                . " AND participantId = ". intval($participantId)
                 . " ORDER BY CASE
                      WHEN activity.datetime is null THEN beobachtung.datetime
                      WHEN activity.datetime is not null THEN activity.datetime
@@ -228,6 +230,30 @@ function getBeobachtungenPerCategories($participantId, $categoryId){
 	}
 
 }
+
+function getBeobachtung($id){
+    
+        
+        	$sql = "SELECT "
+                . " beobachtungId, participantId, leaderId, categoryId, activity.activityId, activity.datetime, DATE(activity.datetime) as activityDateTime, DATE(beobachtung.datetime) as beobachtungDate, beobachtung, Credat "
+                . " FROM beobachtung "
+                . " LEFT OUTER JOIN activity on beobachtung.activityId = activity.activityId"
+                . " WHERE beobachtungId = ". intval($id);
+                
+   //try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->execute();
+		$beobachtungen = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$db = null;
+		echo json_encode($beobachtungen);
+	//} catch(PDOException $e) {
+	//	echo '{"error":{"text":'. $e->getMessage() .'}}';
+	//}            
+
+}
+
 function addBeobachtung(){
     global $app;
 
@@ -257,6 +283,35 @@ function addBeobachtung(){
     } catch (PDOException $ex) {
         echo '{"error":{"text":'. $ex->getMessage() .'}}';
     }
+}
+
+function updateBeobachtung(){
+    global $app;
+
+    $request = $app->request();
+    $beobachtung = json_decode($request->getBody());
+
+    $leaderId = intval($_SESSION["leaderID"]);
+
+    $sql = "UPDATE beobachtung SET categoryId = :categoryId , activityId = :activityId, datetime = :datetime, beobachtung = :beobachtung WHERE beobachtungId = :beobachtungId";
+
+    //try{
+        $db = getConnection();
+        $s = $db->prepare($sql);
+        $s->bindParam("categoryId",  $beobachtung->categoryId);
+        $s->bindParam("activityId",  $beobachtung->activityId);
+        $datetime = '';
+        if(isset($beobachtung->time)){
+            $datetime = $beobachtung->date ." ". $beobachtung->time .":00";
+        }
+
+        $s->bindParam("datetime",  $datetime);
+        $s->bindParam("beobachtung",  $beobachtung->beobachtung);
+        $s->bindParam("beobachtungId", $beobachtung->beobachtungId);
+        $s->execute();
+    //} catch (PDOException $ex) {
+    //    echo '{"error":{"text":'. $ex->getMessage() .'}}';
+    //}
 }
 
 function deleteBeobachtung($id){

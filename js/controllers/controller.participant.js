@@ -17,11 +17,10 @@ app.controller('ParticipantController', function($http, $scope, $routeParams, Be
             });
     };
 
-    $scope.deleteBeobachtung = function (beobachtungId){
 
-        BeobachtungFactory.delete({"id": beobachtungId});
-        getData();
-    }
+    
+    
+    
 
     getData();
 });
